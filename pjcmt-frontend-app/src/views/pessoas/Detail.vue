@@ -99,9 +99,14 @@
       <el-col :lg="24" :md="24" :xs="24" style="margin-top: 10px">
 
         <el-button @click="getBack()" style="float: right; margin-right: 05px">Voltar</el-button>
+
+        <el-button type="default" style="float: right; margin-right: 05px; border:0px !important" title="Compartilhar no Facebook">
+            <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.google.com.br%2Fpessoas&layout=button&size=large&width=123&height=28&appId" width="123" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+         </el-button>
+
          <el-button type="primary" style="float: right; margin-right: 05px" title="Compartilhar no Twitter">
             <el-icon><Share /></el-icon>
-             <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+             <a href="https://twitter.com/intent/tweet?button_hashtag=teste&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #teste</a>
          </el-button>
         
       </el-col>
@@ -111,12 +116,15 @@
 
 <script>
 import ServicePessoa from "@/services/pessoa";
+import SocialMediaShareHelper from "@/helpers/socialMediaShareHelper";
 
 export default {
   name: "PessoasDetalhe",
   data() {
     return {
       pessoaModel: null,
+      urlTwitter: SocialMediaShareHelper.getShareUrlTwitter(),
+      urlFacebook: SocialMediaShareHelper.getShareUrlFacebook()
     };
   },
   mounted() {

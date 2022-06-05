@@ -185,7 +185,7 @@
                 </template>
               </el-table-column>
 
-              <el-table-column label="Opções">
+              <el-table-column   label="Opções">
                 <template #default="scope">
                   <el-button
                     type="default"
