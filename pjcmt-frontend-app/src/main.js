@@ -2,6 +2,9 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import Router from './router/routers';
 import '@/index.css';
+
+import ptBr from 'element-plus/es/locale/lang/pt-br'
+
 //import manually from framework
 //import { ElButton, ElMenu, ElMenuItem, ElMenuItemGroup, ElTable, ElTableColumn } from 'element-plus';
 
@@ -15,7 +18,9 @@ const app = createApp(App);
 //app.use([ElButton, ElMenu, ElMenuItem, ElMenuItemGroup, ElTable, ElTableColumn]);
 
 //use it fully from framework
-app.use(ElementPlus);
+app.use(ElementPlus,{
+    locale: ptBr
+});
 
 app.use(Router);
 app.mount('#app');

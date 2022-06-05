@@ -134,9 +134,37 @@ async function httpPost(url, data, onsuccess, onerror, onfinally) {
         });
 }
 
-export{
+async function httpGet(url, onsuccess, onerror, onfinally) {
+
+    return await fetch(url, {
+        method: 'GET',
+    }).then(response => response.json())
+        .then(data => {
+
+            if (typeof (onsuccess) == "function") {
+                onsuccess(data);
+            }
+
+        })
+        .catch(error => {
+
+            if (typeof (onerror) == "function") {
+                onerror(error);
+            }
+
+        }).finally(function (e) {
+
+            if (typeof (onfinally) == "function") {
+                onfinally(e);
+            }
+
+        });
+}
+
+export default {
     httpDelete,
     httpPut,
     httpPatch,
-    httpPost
+    httpPost,
+    httpGet
 }
