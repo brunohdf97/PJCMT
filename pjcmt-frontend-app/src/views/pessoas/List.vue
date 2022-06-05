@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- @SEÇÃO DE MODAL/DIALOG  -->
-    <el-dialog v-model="showMoreInfoDialog" title="Mais informações">
+    <el-dialog v-model="showMoreInfoDialog" title="Consulta rapída - mais informações">
       <template #default>
         <el-row :gutter="10">
           <el-col :span="24" :xs="24">
@@ -20,7 +20,6 @@
               </div>
 
               <div style="padding: 14px">
-                <span>(Mais informações)</span>
                 <div class="text item text-left">
                   <b>Local:</b>
                   {{ this.moreInfoDialogModel.localDesaparecimento }}
@@ -191,7 +190,14 @@
                   <el-button
                     size="small"
                     @click="openMoreInfoDialog(scope.$index, scope.row)"
-                    >Mais informações</el-button
+                         style="margin-top: 10px; float:left"
+                    >Consulta rápida</el-button
+                  >
+                  <el-button
+                    size="small"
+                    @click="openDetail(scope.$index, scope.row)"
+                    style="margin-top: 10px; float:left"
+                    >Detalhado</el-button
                   >
                 </template>
               </el-table-column>
@@ -203,7 +209,7 @@
               <el-col
                 v-for="(o, index) in grid.data"
                 :key="o"
-                :lg="3"
+                :lg="4"
                 :md="6"
                 :xs="24"
                 :offset="1"
@@ -269,8 +275,13 @@
                       <el-button
                         size="small"
                         @click="openMoreInfoDialog(index, o)"
-                        >Mais informações</el-button
+                        >Consulta rapida</el-button
                       >
+                      <el-button
+                      size="small"
+                      @click="openDetail(index, o)"
+                      >Detalhado</el-button
+                    >
                     </div>
                   </div>
                 </el-card>
@@ -282,7 +293,7 @@
     </el-row>
 
     <!-- @SEÇÃO DE PAGINAÇÃO -->
-    <el-row :gutter="10">
+    <el-row :gutter="10" style="margin-top: 10px">
       <el-col :span="24" :xs="24">
         <el-pagination
           :disabled="grid.paginationDisabled"
@@ -360,6 +371,11 @@ export default {
 
     handleCurrentChange: function (event) {
       GridHelper.onPaginationChanges(this, event);
+    },
+    openDetail: function(index, row){
+      console.log('row: ',row);
+      let id = row.id;
+      this.$router.push({ name:'PessoasDetalhe', params: { id: id, action:"detail" }});
     },
     openMoreInfoDialog: function (index, row) {
 

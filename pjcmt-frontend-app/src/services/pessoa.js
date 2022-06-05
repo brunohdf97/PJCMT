@@ -4,8 +4,6 @@ let baseURL = "https://dev.pjc.mt.gov.br/api-desaparecidos/v1/pessoas";
 
 async function getPessoasEstatistica(onsuccess, onerror, onfinally){
     let url = baseURL+"/aberto/estatistico";
-    console.log('url: ',url);
-    console.log('fetchHelper: ',fetchHelper);
     return await fetchHelper.httpGet(url, onsuccess, onerror, onfinally);
 }
 
