@@ -10,62 +10,61 @@ let GridHelper = new function () {
     let _currentPage = 1;
 
     let getGrid = function (appinstance, callbackOnsuccess) {
-        
-        if (!appinstance.grid.loading) {
 
-            appinstance.grid.loading = true;
-            appinstance.grid.paginationDisabled = true;
 
-            let url = appinstance.grid.urlGrid;
-            if (appinstance.grid.take > 0) {
-                url += "?" + takeQueryParamName + "=" + appinstance.grid.take;
-            }
+        appinstance.grid.loading = true;
+        appinstance.grid.paginationDisabled = true;
 
-            if (skipModePerPage) {
-                if (appinstance.grid.paginationCurrentpage > 1) {
-                    url += "&" + skipQueryParamName + "=" + (appinstance.grid.paginationCurrentpage - 1) * appinstance.grid.take;
-                }
-            }
-            else {
-                if (appinstance.grid.paginationCurrentpage > 1) {
-                    url += "&" + skipQueryParamName + "=" + (appinstance.grid.paginationCurrentpage);
-                }
-            }
-
-            if (_filters != {}) {
-                for (let key in _filters) {
-                    let value = _filters[key];
-                    url += "&" + key + "=" + value;
-                }
-            }
-
-            FetchHelper.httpGet(url, (data) => {
-                
-                console.log('data: ',data);
-                if (data.totalElements != appinstance.grid.total) {
-                    appinstance.grid.total = data.totalElements;
-                }
-
-                appinstance.grid.data = data.content;
-
-                if (typeof callbackOnsuccess == "function")
-                    callbackOnsuccess(data);
-
-                appinstance.grid.loading = false;
-                appinstance.grid.paginationDisabled = false;
-                return;
-
-            }, () => {
-
-                appinstance.grid.loading = false;
-                console.error('erro ao montar grid: não foi possível obter a contagem total');
-                return;
-
-            },
-                () => {
-                    appinstance.grid.loading = false;
-                });
+        let url = appinstance.grid.urlGrid;
+        if (appinstance.grid.take > 0) {
+            url += "/filtro?" + takeQueryParamName + "=" + appinstance.grid.take;
         }
+
+        if (!skipModePerPage) {
+            if (appinstance.grid.paginationCurrentpage > 1) {
+                url += "&" + skipQueryParamName + "=" + (appinstance.grid.paginationCurrentpage - 1) * appinstance.grid.take;
+            }
+        }
+        else {
+            if (appinstance.grid.paginationCurrentpage > 1) {
+                url += "&" + skipQueryParamName + "=" + (appinstance.grid.paginationCurrentpage);
+            }
+        }
+
+        if (_filters != {}) {
+            for (let key in _filters) {
+                let value = _filters[key];
+                url += "&" + key + "=" + value;
+            }
+        }
+
+        //console.log('url: ',url);
+
+        FetchHelper.httpGet(url, (data) => {
+
+            //console.log('datA: ', data);
+            if (data.totalElements != appinstance.grid.total) {
+                appinstance.grid.total = data.totalElements;
+            }
+
+            appinstance.grid.data = data.content;
+
+            if (typeof callbackOnsuccess == "function")
+                callbackOnsuccess(data);
+
+            appinstance.grid.loading = false;
+            appinstance.grid.paginationDisabled = false;
+
+        }, () => {
+
+            appinstance.grid.loading = false;
+            console.error('erro ao montar grid: não foi possível obter a contagem total');
+            return;
+
+        },
+            () => {
+                appinstance.grid.loading = false;
+            });
 
         return;
     };
@@ -95,12 +94,12 @@ let GridHelper = new function () {
 
     };
 
-    let registerFilterEvents = function () {
+    let registerFilterEvents = function (appinstance) {
 
         _filters = {};
         function filterReload(e) {
 
-            let appinstance = window.mainapp;
+            //let appinstance = window.mainapp;
 
             let filters = document.querySelectorAll("[data-grid-filters] input:not(.no-filter),select:not(.no-filter),textarea:not(.no-filter)");
             for (let obj of filters) {
@@ -112,7 +111,7 @@ let GridHelper = new function () {
                     _filters[name] = value;
                 }
                 else
-                    _filters[name] = "";
+                    delete _filters[name];
             }
 
             if (_filters != {}) {
@@ -133,7 +132,7 @@ let GridHelper = new function () {
 
         return {
 
-            loading: false,
+            loading: true,
 
             total: 0,
             data: [],
@@ -162,7 +161,7 @@ let GridHelper = new function () {
         getGrid(appinstance, function () {
 
             setTimeout(function () {
-                registerFilterEvents();
+                registerFilterEvents(appinstance);
             }, 500);
 
             if (typeof (callback) == "function")
@@ -189,14 +188,14 @@ let GridHelper = new function () {
         });
     };
 
-    this.onTakeChanges = function(appinstance, event){
+    this.onTakeChanges = function (appinstance, event) {
 
         appinstance.grid.take = event;
         this.reloadGrid(appinstance);
 
     };
 
-    this.onPaginationChanges = function(appinstance, event){
+    this.onPaginationChanges = function (appinstance, event) {
 
         appinstance.grid.paginationCurrentpage = event;
         this.reloadGrid(appinstance);
