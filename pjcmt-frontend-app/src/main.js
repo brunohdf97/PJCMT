@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import Router from './router/routers';
-import './index.css';
+import '@/index.css';
 //import manually from framework
 //import { ElButton, ElMenu, ElMenuItem, ElMenuItemGroup, ElTable, ElTableColumn } from 'element-plus';
 
