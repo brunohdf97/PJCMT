@@ -12,14 +12,14 @@ import ptBr from 'element-plus/es/locale/lang/pt-br'
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 
-import { Delete, Edit, Search, Share, Upload } from '@element-plus/icons-vue'
+
 
 const app = createApp(App);
 
-//use it import manually from framework
+//use it to import manually from framework
 //app.use([ElButton, ElMenu, ElMenuItem, ElMenuItemGroup, ElTable, ElTableColumn]);
 
-//use it fully from framework
+//use it to import fully from framework
 app.use(ElementPlus,{
     locale: ptBr
 });
