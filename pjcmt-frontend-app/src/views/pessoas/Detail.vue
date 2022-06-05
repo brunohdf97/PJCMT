@@ -97,7 +97,13 @@
     </el-row>
     <el-row>
       <el-col :lg="24" :md="24" :xs="24" style="margin-top: 10px">
-        <el-button @click="getBack()" style="float: right">Voltar</el-button>
+
+        <el-button @click="getBack()" style="float: right; margin-right: 05px">Voltar</el-button>
+         <el-button type="primary" style="float: right; margin-right: 05px" title="Compartilhar no Twitter">
+            <el-icon><Share /></el-icon>
+             <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+         </el-button>
+        
       </el-col>
     </el-row>
   </div>

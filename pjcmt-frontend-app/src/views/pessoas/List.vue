@@ -185,19 +185,21 @@
                 </template>
               </el-table-column>
 
-              <el-table-column align="right" label="Opções">
+              <el-table-column label="Opções">
                 <template #default="scope">
                   <el-button
-                    size="small"
+                    type="default"
                     @click="openMoreInfoDialog(scope.$index, scope.row)"
+                    title="Consulta rápida - mais informações"
                          style="margin-top: 10px; float:left"
-                    >Consulta rápida</el-button
+                    ><el-icon><InfoFilled /></el-icon></el-button
                   >
                   <el-button
-                    size="small"
+                   type="primary"
                     @click="openDetail(scope.$index, scope.row)"
+                    title="Compartilhar"
                     style="margin-top: 10px; float:left"
-                    >Detalhado</el-button
+                    ><el-icon><Share /></el-icon> </el-button
                   >
                 </template>
               </el-table-column>
@@ -273,14 +275,16 @@
                     </div>
                     <div class="text item text-left">
                       <el-button
-                        size="small"
+                       type="default"
+                        title="Consulta rápida - mais informações"
                         @click="openMoreInfoDialog(index, o)"
-                        >Consulta rapida</el-button
+                        ><el-icon><InfoFilled /></el-icon></el-button
                       >
                       <el-button
-                      size="small"
+                      title="Compartilhar"
+                      type="primary"
                       @click="openDetail(index, o)"
-                      >Detalhado</el-button
+                      ><el-icon><Share /></el-icon> </el-button
                     >
                     </div>
                   </div>
