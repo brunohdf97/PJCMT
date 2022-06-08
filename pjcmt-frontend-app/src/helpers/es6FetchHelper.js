@@ -120,7 +120,6 @@ async function httpPost(url, data, onsuccess, onerror, onfinally) {
         })
         .catch(error => {
 
-            console.error('http-error:', error);
             if (typeof (onerror) == "function") {
                 onerror(error);
             }
