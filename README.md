@@ -1,3 +1,4 @@
+# [ESCRITO PELO DEV]
 # PJCMT-FRONTEND
 Projeto desenvolvido utilizando o framework 'element-plus' que utiliza VUE3. É possível desenvolver os componentes do zero,
 mas optei por esta abordagem pois além de ganhar uma manutenibilidade já documentada, ganha também agilidade no desenvolvimento.
@@ -11,5 +12,29 @@ Os demais requisitos também foram atendidos, instalei o Tailwind mas ainda não
 - npm run serve
 
 # Como publicar o projeto
-- npm run build
+- npm run build 
 - a publicação vai estar na pasta "pjcmt-frontend-app/dist
+
+# [GERADO PELO VUE CLI]
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
