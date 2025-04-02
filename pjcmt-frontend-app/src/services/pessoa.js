@@ -1,6 +1,6 @@
 import fetchHelper from "@/helpers/es6FetchHelper";
 
-let baseURL = "https://dev.pjc.mt.gov.br/api-desaparecidos/v1/pessoas";
+let baseURL = "https://abitus-api.geia.vip/v1/pessoas";
 
 async function getPessoasEstatistica(onsuccess, onerror, onfinally){
     let url = baseURL+"/aberto/estatistico";
