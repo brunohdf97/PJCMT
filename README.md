@@ -1,4 +1,7 @@
 # [ESCRITO PELO DEV]
+# LINK DO PROJETO
+https://github.com/brunohdf97/PJCMT
+
 # PJCMT-FRONTEND
 Projeto desenvolvido utilizando o framework 'element-plus' que utiliza VUE3. É possível desenvolver os componentes do zero,
 mas optei por esta abordagem pois além de ganhar uma manutenibilidade já documentada, ganha também agilidade no desenvolvimento.
