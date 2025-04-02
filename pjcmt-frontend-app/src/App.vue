@@ -14,7 +14,7 @@
             default-active="1"
           >
             <el-menu-item index="1">
-               <router-link to="/">PJCMT - Polícia Cívil de Mato Grosso</router-link>
+               <router-link to="/">PJCMT - Polícia Judiciária Civil de Mato Grosso</router-link>
             </el-menu-item>
             <el-menu-item index="2">
               <router-link to="/pessoas">Localizados/Desaparecidos</router-link>
